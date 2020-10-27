@@ -4,9 +4,9 @@
             <v-container>
                 <v-row>
                     <v-col align-self="center">
-                        <h2 class="text-center">
+                        <!-- <h2 class="text-center">
                             This is the default container
-                        </h2>
+                        </h2> -->
                     </v-col>
                 </v-row>
                 <nuxt />
