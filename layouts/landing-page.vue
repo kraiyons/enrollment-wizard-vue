@@ -14,7 +14,7 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+      <!-- <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <v-btn icon @click.stop="clipped = !clipped">
@@ -23,12 +23,18 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="title" /> -->
       <v-spacer />
       <theme-button />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
+      <v-btn elevation="2" color="primary">
+        <nuxt-link to="enroll/process" class="text-decoration-none white--text">
+          <v-icon>mdi-auto-fix</v-icon>
+          Get Started
+        </nuxt-link>
       </v-btn>
+      <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn> -->
     </v-app-bar>
     <v-main>
       <v-container>
@@ -59,16 +65,26 @@ export default {
           title: 'Welcome',
           to: '/',
         },
+        // {
+        //   icon: 'mdi-auto-fix',
+        //   title: 'Get Started',
+        //   to: '/enroll',
+        // },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          icon: 'mdi-domain',
+          title: 'About',
+          to: '/about',
+        },
+        {
+          icon: 'mdi-card-account-phone',
+          title: 'Contact Us',
+          to: '/contact-us',
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'Webshop',
     }
   },
   method: {
