@@ -35,3 +35,8 @@ extend('alpha_spaces', {
   ...alpha_spaces,
   message: '{_field_} should only contain alphabetical and space characters',
 })
+
+extend('alpha_num', {
+  ...alpha_spaces,
+  message: '{_field_} should only contain alphanumeric characters',
+})

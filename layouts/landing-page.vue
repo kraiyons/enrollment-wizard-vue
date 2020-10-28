@@ -51,6 +51,7 @@
 <script>
 import ThemeButton from '@/components/ThemeButton'
 export default {
+  name: 'landing-page',
   components: {
     ThemeButton,
   },

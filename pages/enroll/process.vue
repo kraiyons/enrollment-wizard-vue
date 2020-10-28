@@ -21,7 +21,7 @@
                 <form @submit.prevent="goNext">
                   <validation-provider v-slot="{ errors }" name="Company Name" rules="required|max:25|alpha_num">
                     <v-text-field
-                      v-model="companyName"
+                      v-model="formData.companyName"
                       label="Company Name"
                       :error-messages="errors"
                       required
@@ -29,7 +29,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Registration Number" rules="required|max:10|min:9">
                     <v-text-field
-                      v-model="registrationNo"
+                      v-model="formData.registrationNo"
                       name="Registration Number"
                       label="Registration Number"
                       :error-messages="errors"
@@ -38,7 +38,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Industry" rules="required">
                     <v-select
-                      v-model="industry"
+                      v-model="formData.industry"
                       name="Industry"
                       :items="industrySelect"
                       label="Industry"
@@ -68,9 +68,9 @@
                 <form @submit.prevent="goNext">
                   <v-row>
                     <v-col>
-                      <validation-provider v-slot="{ errors }" name="Address Block" rules="required|max:25|alpha">
+                      <validation-provider v-slot="{ errors }" name="Address Block" rules="required|max:25">
                         <v-text-field
-                          v-model="addressBlock"
+                          v-model="formData.addressBlock"
                           label="Address Block"
                           name="Address Block"
                           :error-messages="errors"
@@ -81,7 +81,7 @@
                     <v-col>
                       <validation-provider v-slot="{ errors }" name="Address Road" rules="required|max:50">
                         <v-text-field
-                          v-model="addressRoad"
+                          v-model="formData.addressRoad"
                           label="Address Road"
                           name="Address Road"
                           :error-messages="errors"
@@ -94,7 +94,7 @@
                     <v-col>
                       <validation-provider v-slot="{ errors }" name="Address Unit" rules="required|max:10">
                         <v-text-field
-                          v-model="addressUnit"
+                          v-model="formData.addressUnit"
                           label="Address Unit"
                           name="Address Unit"
                           :error-messages="errors"
@@ -105,7 +105,7 @@
                     <v-col>
                       <validation-provider v-slot="{ errors }" name="Country" rules="required">
                         <v-text-field
-                          v-model="country"
+                          v-model="formData.country"
                           label="Country"
                           name="Country"
                           :error-messages="errors"
@@ -116,7 +116,7 @@
                     <v-col>
                       <validation-provider v-slot="{ errors }" name="Postal Code" rules="required|numeric|min:6">
                         <v-text-field
-                          v-model="postalCode"
+                          v-model="formData.postalCode"
                           label="Postal Code"
                           name="Postal Code"
                           :error-messages="errors"
@@ -129,7 +129,7 @@
                     <v-col>
                       <validation-provider v-slot="{ errors }" name="Office Phone" rules="required|max:8|min:8|numeric">
                         <v-text-field
-                          v-model="officePhone"
+                          v-model="formData.officePhone"
                           label="Office Phone"
                           name="Office Phone"
                           :error-messages="errors"
@@ -140,8 +140,7 @@
                     <v-col>
                       <validation-provider v-slot="{ errors }" name="Office Email" rules="required|email">
                         <v-text-field
-                          v-model="officeEmail"
-                          :rules="emailRules"
+                          v-model="formData.officeEmail"
                           label="Office Email"
                           name="Office Email"
                           :error-messages="errors"
@@ -168,7 +167,7 @@
                 <form @submit.prevent="goNext">
                   <validation-provider v-slot="{ errors }" name="Name" rules="required|max:50|alpha_spaces">
                     <v-text-field
-                      v-model="name"
+                      v-model="formData.name"
                       label="Name"
                       name="Name"
                       :error-messages="errors"
@@ -177,8 +176,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="E-mail" rules="required|email">
                     <v-text-field
-                      v-model="email"
-                      :rules="emailRules"
+                      v-model="formData.email"
                       label="E-mail"
                       :error-messages="errors"
                       name="E-mail"
@@ -187,7 +185,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Phone" rules="required|min:8|max:8|numeric">
                     <v-text-field
-                      v-model="phone"
+                      v-model="formData.phone"
                       label="Phone"
                       name="Phone"
                       :error-messages="errors"
@@ -211,7 +209,7 @@
                 <form @submit.prevent="submit">
                   <validation-provider v-slot="{ errors }" name="Store Name" rules="required|max:50">
                     <v-text-field
-                      v-model="storeName"
+                      v-model="formData.storeName"
                       label="Store Name"
                       name="Store Name"
                       :error-messages="errors"
@@ -220,7 +218,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="Store Domain" rules="required|max:50">
                     <v-text-field
-                      v-model="storeDomain"
+                      v-model="formData.storeDomain"
                       label="Store Domain"
                       name="Store Domain"
                       :error-messages="errors"
@@ -229,7 +227,7 @@
                   </validation-provider>
                   <validation-provider v-slot="{ errors }" name="CMS Domain" rules="required|max:50">
                     <v-text-field
-                      v-model="cmsDomain"
+                      v-model="formData.cmsDomain"
                       label="CMS Domain"
                       name="CMS Domain"
                       :error-messages="errors"
@@ -290,22 +288,24 @@ export default {
   },
   data: () => ({
     stepNum: 1,
-    name: '',
-    email: '',
-    phone: '',
-    companyName: '',
-    registrationNo: '',
-    industry: '',
-    addressBlock: '',
-    addressRoad: '',
-    addressUnit: '',
-    country: '',
-    postalCode: '',
-    officePhone: '',
-    officeEmail: '',
-    storeName: '',
-    storeDomain: '',
-    cmsDomain: '',
+    formData: {
+      name: '',
+      email: '',
+      phone: '',
+      companyName: '',
+      registrationNo: '',
+      industry: '',
+      addressBlock: '',
+      addressRoad: '',
+      addressUnit: '',
+      country: '',
+      postalCode: '',
+      officePhone: '',
+      officeEmail: '',
+      storeName: '',
+      storeDomain: '',
+      cmsDomain: '',
+    },
     basicInfoSvg: require('@/assets/svg/svg-basic-info.svg'),
     contactInfoSvg: require('@/assets/svg/svg-contact-info.svg'),
     primaryContactSvg: require('@/assets/svg/svg-primary-contact.svg'),
@@ -330,7 +330,8 @@ export default {
       this.stepNum++
     },
     submit() {
-      console.log
+      console.log(this.formData)
+      // TODO: POST TO API
     },
   },
 }
